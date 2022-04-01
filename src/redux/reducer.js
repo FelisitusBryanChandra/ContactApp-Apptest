@@ -1,9 +1,15 @@
+import {GET_CONTACT} from './action.js'
+
 const initialState ={
-    name:"Bryan"
+    data:[]
 }
 
 const reducer = (state = initialState, action) =>{
-    return state
+    switch(action.type){
+    case GET_CONTACT:
+        return{ ...state, data: action.payload};
+    default:
+        return state}
 }
 
 export default reducer;
