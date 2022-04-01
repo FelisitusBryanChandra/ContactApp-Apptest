@@ -6,6 +6,7 @@ import {store} from './src/redux';
 import Home from './src/screens/Home';
 import ContactDetails from './src/screens/ContactDetails';
 import AddContact from './src/screens/AddContact';
+import EditContact from './src/screens/EditContact';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,6 +27,11 @@ export default () => (
         <Stack.Screen
         name="AddContact"
         component={AddContact}
+        options={{headerShown:false}}
+        />
+         <Stack.Screen
+        name="EditContact"
+        component={EditContact}
         options={{headerShown:false}}
         />
       </Stack.Navigator>

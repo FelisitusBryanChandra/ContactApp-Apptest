@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { View, Text, Image, TouchableHighlight, FlatList, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { connect, useDispatch } from 'react-redux';
-import { getContact, getContactbyId } from '../redux/action';
+import { getContact, getContactbyId, deleteContact } from '../redux/action';
 
 class ContactDetails extends React.Component{
 
@@ -16,6 +16,26 @@ class ContactDetails extends React.Component{
         console.log(id.id + " id")
         dispatch(getContactbyId(id.id));
         console.log(this.props.DATA.photo +" photo")
+    }
+
+    delContact(){
+        const id = this.props.route.params.id
+        this.props.dispatch(deleteContact(id));
+        console.log("Contact Deleted")
+        this.props.navigation.navigate('Home')  
+    }
+
+    editContact(){
+        const navigation = this.props.navigation
+        const data = this.props.DATA
+        const id = this.props.route.params.id
+        navigation.navigate('EditContact',{
+            contactId: id,
+            firstName: data.firstName,
+            lastName: data.lastName,
+            age: data.age,
+            photo: data.photo
+        })
     }
 
     render(){
@@ -44,6 +64,7 @@ class ContactDetails extends React.Component{
                 </TouchableOpacity>
                 <TouchableOpacity
                 style={styles.button}
+                onPress={() => this.editContact()}
                 >
                     <Image
                     source={{uri:'https://cdn-icons-png.flaticon.com/512/1159/1159633.png'}}
@@ -52,6 +73,7 @@ class ContactDetails extends React.Component{
                 </TouchableOpacity>
                 <TouchableOpacity
                 style={styles.button}
+                onPress={()=> this.delContact()}
                 >
                     <Image
                     source={{uri:'https://cdn-icons.flaticon.com/png/512/657/premium/657059.png?token=exp=1648813707~hmac=fea78dc8f2946624150dbb36e58a515b'}}

@@ -1,4 +1,4 @@
-import {GET_CONTACT, ADD_CONTACT} from './action.js'
+import {GET_CONTACT, ADD_CONTACT, DEL_CONTACT} from './action.js'
 import { combineReducers } from 'redux';
 
 
@@ -14,6 +14,8 @@ const reducer = (state = initialState, action) =>{
         return{ ...state, data: action.payload};
     case ADD_CONTACT:
         return{form: action.inputValue,}
+    case DEL_CONTACT:
+        return{...state, data:action.payload}
     case 'SET_FORM':
         return{
             form:{

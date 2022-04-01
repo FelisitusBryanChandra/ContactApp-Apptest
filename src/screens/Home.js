@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state){
     return{
-        DATA: state.data.data
+        DATA: state.data
     }
 }
 
